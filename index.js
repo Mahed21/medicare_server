@@ -35,6 +35,11 @@ async function run() {
       const result = await patiantUserCollection.insertOne(newUser);
       res.send(result);
     });
+    app.get("/patient", async (req, res) => {
+      const cursor = patiantUserCollection.find({});
+      const users = await cursor.toArray();
+      res.send(users);
+    });
 
     //console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
